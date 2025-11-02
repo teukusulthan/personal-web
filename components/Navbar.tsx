@@ -1,12 +1,37 @@
 "use client";
 
 import * as React from "react";
-import { Button } from "./ui/button";
 import Link from "next/link";
-import { Menu, X } from "lucide-react";
+import { useTheme } from "next-themes";
+import { Button } from "./ui/button";
+import { Menu, X, Sun, Moon } from "lucide-react";
 
 export default function NavBar() {
   const [open, setOpen] = React.useState(false);
+
+  const { theme, setTheme, systemTheme } = useTheme();
+  const [mounted, setMounted] = React.useState(false);
+  React.useEffect(() => setMounted(true), []);
+  const resolved = theme === "system" ? systemTheme : theme;
+  const isDark = mounted ? resolved === "dark" : false;
+
+  const smoothToggleTheme = React.useCallback(
+    (next: "light" | "dark") => {
+      const root = document.documentElement;
+      root.classList.add("theme-transition");
+
+      void root.offsetWidth;
+      requestAnimationFrame(() => {
+        setTheme(next);
+        window.setTimeout(() => {
+          root.classList.remove("theme-transition");
+        }, 550);
+      });
+    },
+    [setTheme]
+  );
+
+  const onToggleTheme = () => smoothToggleTheme(isDark ? "light" : "dark");
 
   React.useEffect(() => {
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
@@ -21,60 +46,100 @@ export default function NavBar() {
 
   const closeAfter = () => setOpen(false);
 
+  const ariaLabel = mounted
+    ? isDark
+      ? "Switch to light mode"
+      : "Switch to dark mode"
+    : "Toggle color theme";
+  const titleLabel = mounted
+    ? isDark
+      ? "Light mode"
+      : "Dark mode"
+    : "Toggle theme";
+
   return (
-    <nav className="h-20 px-6 md:px-8 lg:px-16 flex justify-between relative">
-      <div className="h-full flex items-center">
-        <p className="cursor-pointer hover:text-white tracking-widest text-sm">
+    <nav className="relative flex h-16 justify-between px-6 md:px-8 lg:px-16 bg-background text-foreground">
+      {/* Brand */}
+      <div className="flex h-full items-center">
+        <p className="cursor-pointer tracking-widest text-sm hover:opacity-90">
           TEUKU SULTHAN.
         </p>
       </div>
 
-      <div className="hidden md:flex gap-2 justify-center items-center">
-        <Button>
+      <div className="hidden md:flex items-center justify-center gap-2">
+        <Button variant="ghost" asChild className="font-medium">
           <Link
-            className="text-md text-neutral-300 transition-all duration-300 hover:text-white"
-            href={"#skills"}
+            href="#skills"
+            className="text-md text-foreground/90 hover:text-foreground transition-colors"
           >
             Skills
           </Link>
         </Button>
-        <Button>
+        <Button variant="ghost" asChild className="font-medium">
           <Link
-            className="text-md text-neutral-300 transition-all duration-300 hover:text-white"
-            href={"#projects"}
+            href="#projects"
+            className="text-md text-foreground/90 hover:text-foreground transition-colors"
           >
             Projects
           </Link>
         </Button>
-        <Button>
+        <Button variant="ghost" asChild className="font-medium">
           <Link
-            className="text-md text-neutral-300 transition-all duration-300 hover:text-white"
-            href={"#experiences"}
+            href="#experiences"
+            className="text-md text-foreground/90 hover:text-foreground transition-colors"
           >
             Experiences
           </Link>
         </Button>
       </div>
 
-      <div className="hidden md:flex h-full items-center">
-        <Button
-          variant="ghost"
-          className="text-neutral-200 hover:text-white cursor-pointer text-sm"
-        >
-          Contact
-        </Button>
-      </div>
+      <div className="flex h-full items-center gap-1">
+        <div className="hidden md:flex">
+          <Button
+            variant="ghost"
+            asChild
+            className="text-sm font-medium text-foreground/90 hover:text-foreground"
+          >
+            <Link
+              href="mailto:teukusultanul@gmail.com"
+              aria-label="Email Teuku Sulthan"
+            >
+              Contact
+            </Link>
+          </Button>
+        </div>
 
-      <div className="md:hidden flex items-center">
         <Button
           variant="ghost"
           size="icon"
-          aria-label="Toggle menu"
-          aria-expanded={open}
-          onClick={() => setOpen((v) => !v)}
+          aria-label={ariaLabel}
+          title={titleLabel}
+          onClick={onToggleTheme}
         >
-          {open ? <X className="h-8 w-8" /> : <Menu className="h-8 w-8" />}
+          <span suppressHydrationWarning>
+            {mounted ? (
+              isDark ? (
+                <Moon className="h-5 w-5" />
+              ) : (
+                <Sun className="h-5 w-5" />
+              )
+            ) : (
+              <Sun className="h-5 w-5" />
+            )}
+          </span>
         </Button>
+
+        <div className="md:hidden flex items-center">
+          <Button
+            variant="ghost"
+            size="icon"
+            aria-label="Toggle menu"
+            aria-expanded={open}
+            onClick={() => setOpen((v) => !v)}
+          >
+            {open ? <X className="h-8 w-8" /> : <Menu className="h-8 w-8" />}
+          </Button>
+        </div>
       </div>
 
       <div
@@ -82,25 +147,43 @@ export default function NavBar() {
         className={[
           "md:hidden fixed inset-0 z-40 transition",
           open
-            ? "backdrop-blur-sm bg-black/40 opacity-100"
+            ? "backdrop-blur-sm bg-foreground/10 opacity-100"
             : "pointer-events-none bg-transparent backdrop-blur-0 opacity-0",
         ].join(" ")}
       />
 
       <aside
         className={[
-          "md:hidden fixed top-0 right-0 z-50 h-screen",
-          "w-48 sm:w-56",
-          "bg-background shadow-xl",
+          "md:hidden fixed top-0 right-0 z-50 h-screen w-48 sm:w-56",
+          "bg-background shadow-xl border-l border-border",
           "transition-transform duration-300",
           open ? "translate-x-0" : "translate-x-full",
-          "backdrop-blur",
         ].join(" ")}
         role="dialog"
         aria-modal="true"
         aria-label="Mobile navigation"
       >
-        <div className="flex items-center justify-end h-20 px-4">
+        <div className="flex h-20 items-center justify-between px-4">
+          <Button
+            variant="ghost"
+            size="icon"
+            aria-label={ariaLabel}
+            title={titleLabel}
+            onClick={onToggleTheme}
+          >
+            <span suppressHydrationWarning>
+              {mounted ? (
+                isDark ? (
+                  <Moon className="h-5 w-5" />
+                ) : (
+                  <Sun className="h-5 w-5" />
+                )
+              ) : (
+                <Sun className="h-5 w-5" />
+              )}
+            </span>
+          </Button>
+
           <Button
             variant="ghost"
             size="icon"
@@ -111,15 +194,16 @@ export default function NavBar() {
           </Button>
         </div>
 
-        <div className="px-3 py-2 flex flex-col gap-1">
+        <div className="flex flex-col gap-1 px-3 py-2">
           <Button
             variant="ghost"
             className="justify-start"
             onClick={closeAfter}
+            asChild
           >
             <Link
-              className="w-full text-md text-neutral-300 transition-all duration-300 hover:text-white"
-              href={"#experiences"}
+              className="w-full text-md text-foreground/90 hover:text-foreground"
+              href="#experiences"
             >
               Experiences
             </Link>
@@ -128,10 +212,11 @@ export default function NavBar() {
             variant="ghost"
             className="justify-start"
             onClick={closeAfter}
+            asChild
           >
             <Link
-              className="w-full text-md text-neutral-300 transition-all duration-300 hover:text-white"
-              href={"#skills"}
+              className="w-full text-md text-foreground/90 hover:text-foreground"
+              href="#skills"
             >
               Skills
             </Link>
@@ -140,20 +225,27 @@ export default function NavBar() {
             variant="ghost"
             className="justify-start"
             onClick={closeAfter}
+            asChild
           >
             <Link
-              className="w-full text-md text-neutral-300 transition-all duration-300 hover:text-white"
-              href={"#projects"}
+              className="w-full text-md text-foreground/90 hover:text-foreground"
+              href="#projects"
             >
               Projects
             </Link>
           </Button>
           <Button
             variant="ghost"
-            className="justify-start text-sm"
+            className="justify-center text-sm"
             onClick={closeAfter}
+            asChild
           >
-            <Link href={"#contact"}>Contact</Link>
+            <Link
+              className="text-foreground/90 hover:text-foreground"
+              href="#contact"
+            >
+              Contact
+            </Link>
           </Button>
         </div>
       </aside>
