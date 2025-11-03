@@ -2,6 +2,7 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Stack from "@/components/Stack";
 import FadeContent from "@/components/FadeContent";
+import Projects from "@/components/Projects";
 
 export default function Home() {
   return (
@@ -15,6 +16,7 @@ export default function Home() {
       >
         <Hero />
         <Stack />
+        <Projects />
       </FadeContent>
     </main>
   );

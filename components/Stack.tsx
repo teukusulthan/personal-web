@@ -130,7 +130,7 @@ export default function Stack() {
           />
           <div className="pointer-events-none absolute inset-0 flex justify-between">
             <div className="w-16 md:w-36 bg-linear-to-r from-background to-transparent" />
-            <div className="w-16 md:w-36 bg-linear-to-l from-background to-transparent" />
+            <div className="w-16  md:w-36 bg-linear-to-l from-background to-transparent" />
           </div>
         </div>
       </div>
