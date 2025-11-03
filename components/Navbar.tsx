@@ -58,7 +58,7 @@ export default function NavBar() {
     : "Toggle theme";
 
   return (
-    <nav className="fixed top-0 left-0 right-0 flex h-16 justify-between px-6 md:px-8 lg:px-16 bg-background text-foreground">
+    <nav className="fixed top-0 z-80 left-0 right-0 flex h-16 justify-between px-6 md:px-8 lg:px-16 bg-background text-foreground">
       <div className="flex h-full items-center">
         <p className="cursor-pointer tracking-widest text-sm hover:opacity-90">
           TEUKU SULTHAN.
@@ -68,7 +68,7 @@ export default function NavBar() {
       <div className="hidden md:flex items-center justify-center gap-2">
         <Button variant="ghost" asChild className="font-medium">
           <Link
-            href="#stack"
+            href="#stacks"
             className="text-md text-foreground/90 hover:text-foreground transition-all"
           >
             Stacks
@@ -236,7 +236,7 @@ export default function NavBar() {
           </Button>
           <Button
             variant="ghost"
-            className="justify-center text-sm"
+            className="justify-start text-sm"
             onClick={closeAfter}
             asChild
           >
