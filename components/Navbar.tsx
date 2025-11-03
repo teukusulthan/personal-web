@@ -58,8 +58,7 @@ export default function NavBar() {
     : "Toggle theme";
 
   return (
-    <nav className="relative flex h-16 justify-between px-6 md:px-8 lg:px-16 bg-background text-foreground">
-      {/* Brand */}
+    <nav className="fixed top-0 left-0 right-0 flex h-16 justify-between px-6 md:px-8 lg:px-16 bg-background text-foreground">
       <div className="flex h-full items-center">
         <p className="cursor-pointer tracking-widest text-sm hover:opacity-90">
           TEUKU SULTHAN.
@@ -69,16 +68,16 @@ export default function NavBar() {
       <div className="hidden md:flex items-center justify-center gap-2">
         <Button variant="ghost" asChild className="font-medium">
           <Link
-            href="#skills"
-            className="text-md text-foreground/90 hover:text-foreground transition-colors"
+            href="#stack"
+            className="text-md text-foreground/90 hover:text-foreground transition-all"
           >
-            Skills
+            Stacks
           </Link>
         </Button>
         <Button variant="ghost" asChild className="font-medium">
           <Link
             href="#projects"
-            className="text-md text-foreground/90 hover:text-foreground transition-colors"
+            className="text-md text-foreground/90 hover:text-foreground transition-all"
           >
             Projects
           </Link>
@@ -86,7 +85,7 @@ export default function NavBar() {
         <Button variant="ghost" asChild className="font-medium">
           <Link
             href="#experiences"
-            className="text-md text-foreground/90 hover:text-foreground transition-colors"
+            className="text-md text-foreground/90 hover:text-foreground transition-all"
           >
             Experiences
           </Link>
@@ -110,6 +109,7 @@ export default function NavBar() {
         </div>
 
         <Button
+          className="cursor-pointer"
           variant="ghost"
           size="icon"
           aria-label={ariaLabel}

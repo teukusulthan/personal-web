@@ -6,7 +6,7 @@ import Link from "next/link";
 
 export default function Hero() {
   return (
-    <section className="h-[calc(100vh-65px)] px-10">
+    <section className="h-[calc(100vh-65px)] px-5 md:px-10 pt-20 sm:pt-0 md:pt-20">
       <div className="mx-auto flex h-full max-w-7xl items-start md:items-center pt-12 sm:pt-16 md:pt-0 px-6 sm:px-8 md:px-12 lg:px-20">
         <div className="grid w-full grid-cols-1 items-center gap-8 md:grid-cols-12">
           <div className="order-1 md:order-2 md:col-span-5">
@@ -25,13 +25,13 @@ export default function Hero() {
           </div>
 
           <div className="order-2 md:order-1 md:col-span-7 text-center md:text-left">
-            <h1 className="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
+            <h1 className="text-2xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
               Hi, I’m Teuku Sulthan.
             </h1>
-            <h2 className="mt-2 text-xl text-foreground/80 sm:text-2xl">
+            <h2 className="mt-2 text-md text-foreground/80 sm:text-2xl">
               Full Stack Software Engineer
             </h2>
-            <p className="mt-6 max-w-2xl text-base leading-7 text-foreground/80 sm:text-md mx-auto md:mx-0">
+            <p className="mt-6 max-w-2xl text-sm leading-7 text-foreground/80 sm:text-md mx-auto md:mx-0">
               I design, build, and operate digital products end-to-end
               clarifying the problem, shaping the solution, and ensuring it
               performs in the real world. I focus on clear user journeys,
@@ -40,7 +40,7 @@ export default function Hero() {
 
             <Button
               asChild
-              className="mt-6 w-40 mr-4 gap-2  rounded-lg font-medium"
+              className="mt-6 w-35 sm:w-40 mr-4 gap-2 rounded-lg font-medium"
             >
               <Link
                 href="mailto:teukusultanul@gmail.com"
@@ -54,7 +54,7 @@ export default function Hero() {
             <Button
               variant="outline"
               asChild
-              className="mt-6 rounded-lg border-2 border-primary w-40 mr-3 gap-2"
+              className="mt-6 rounded-lg border border-primary w-35 sm:w-40 gap-2"
             >
               <Link
                 href="https://github.com/teukusulthan"
