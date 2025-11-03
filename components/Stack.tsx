@@ -86,7 +86,7 @@ export default function Stack() {
   ];
 
   return (
-    <section id="stacks" className="h-screen px-15 md:px-25 flex items-center">
+    <section id="stacks" className="h-screen px-15 flex items-center">
       <div className="w-full mx-auto min-w-0">
         <h1 className="text-3xl font-bold mb-2 tracking-wide text-center">
           TECH STACKS.

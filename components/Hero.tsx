@@ -6,7 +6,10 @@ import Link from "next/link";
 
 export default function Hero() {
   return (
-    <section className="h-screen px-5 md:px-10 pt-20 sm:pt-0 md:pt-20 ">
+    <section
+      id="hero"
+      className="h-screen px-5 md:px-10 pt-20 sm:pt-0 md:pt-20 "
+    >
       <div className="mx-auto flex h-full max-w-7xl items-start md:items-center pt-12 sm:pt-16 md:pt-0 px-6 sm:px-8 md:px-12 lg:px-20">
         <div className="grid w-full grid-cols-1 items-center gap-8 md:grid-cols-12">
           <div className="order-1 md:order-2 md:col-span-5">

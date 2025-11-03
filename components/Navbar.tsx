@@ -88,9 +88,12 @@ export default function NavBar() {
         className="fixed top-0 left-0 right-0 z-50 flex h-16 justify-between px-6 md:px-8 lg:px-16 bg-background text-foreground"
       >
         <div className="flex h-full items-center">
-          <p className="cursor-pointer tracking-widest text-sm hover:opacity-90">
+          <a
+            href="#hero"
+            className="cursor-pointer tracking-widest text-sm hover:opacity-90"
+          >
             TEUKU SULTHAN.
-          </p>
+          </a>
         </div>
 
         <div className="hidden md:flex items-center justify-center gap-2">
@@ -234,22 +237,9 @@ export default function NavBar() {
                 >
                   <Link
                     className="w-full text-md text-foreground/90 hover:text-foreground"
-                    href="#experiences"
+                    href="#stacks"
                   >
-                    Experiences
-                  </Link>
-                </Button>
-                <Button
-                  variant="ghost"
-                  className="justify-start"
-                  onClick={closeAfter}
-                  asChild
-                >
-                  <Link
-                    className="w-full text-md text-foreground/90 hover:text-foreground"
-                    href="#skills"
-                  >
-                    Skills
+                    Tech
                   </Link>
                 </Button>
                 <Button
@@ -263,6 +253,19 @@ export default function NavBar() {
                     href="#projects"
                   >
                     Projects
+                  </Link>
+                </Button>
+                <Button
+                  variant="ghost"
+                  className="justify-start"
+                  onClick={closeAfter}
+                  asChild
+                >
+                  <Link
+                    className="w-full text-md text-foreground/90 hover:text-foreground"
+                    href="#experiences"
+                  >
+                    Experiences
                   </Link>
                 </Button>
                 <Button
