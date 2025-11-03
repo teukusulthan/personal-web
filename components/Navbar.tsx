@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import Link from "next/link";
+import { createPortal } from "react-dom";
 import { useTheme } from "next-themes";
 import { Button } from "./ui/button";
 import { Menu, X, Sun, Moon } from "lucide-react";
@@ -15,19 +16,19 @@ export default function NavBar() {
   const delay = 0;
   const initialOpacity = 0;
 
-  const [inView, setInView] = React.useState(false);
+  const [mountedFade, setMountedFade] = React.useState(false);
   React.useEffect(() => {
     const t: ReturnType<typeof setTimeout> = setTimeout(
-      () => setInView(true),
+      () => setMountedFade(true),
       delay
     );
     return () => clearTimeout(t);
   }, [delay]);
 
   const fadeStyle: React.CSSProperties = {
-    opacity: inView ? 1 : initialOpacity,
+    opacity: mountedFade ? 1 : initialOpacity,
     transition: `opacity ${duration}ms ${easing}, filter ${duration}ms ${easing}`,
-    filter: blur ? (inView ? "blur(0px)" : "blur(10px)") : "none",
+    filter: blur ? (mountedFade ? "blur(0px)" : "blur(10px)") : "none",
   };
 
   const { theme, setTheme, systemTheme } = useTheme();
@@ -77,117 +78,66 @@ export default function NavBar() {
       : "Dark mode"
     : "Toggle theme";
 
+  const [portalReady, setPortalReady] = React.useState(false);
+  React.useEffect(() => setPortalReady(true), []);
+
   return (
-    <nav
-      style={fadeStyle}
-      className="fixed top-0 z-80 left-0 right-0 flex h-16 justify-between px-6 md:px-8 lg:px-16 bg-background text-foreground"
-    >
-      <div className="flex h-full items-center">
-        <p className="cursor-pointer tracking-widest text-sm hover:opacity-90">
-          TEUKU SULTHAN.
-        </p>
-      </div>
+    <>
+      <nav
+        style={fadeStyle}
+        className="fixed top-0 left-0 right-0 z-50 flex h-16 justify-between px-6 md:px-8 lg:px-16 bg-background text-foreground"
+      >
+        <div className="flex h-full items-center">
+          <p className="cursor-pointer tracking-widest text-sm hover:opacity-90">
+            TEUKU SULTHAN.
+          </p>
+        </div>
 
-      <div className="hidden md:flex items-center justify-center gap-2">
-        <Button variant="ghost" asChild className="font-medium">
-          <Link
-            href="#stacks"
-            className="text-md text-foreground/90 hover:text-foreground transition-all"
-          >
-            Tech
-          </Link>
-        </Button>
-        <Button variant="ghost" asChild className="font-medium">
-          <Link
-            href="#projects"
-            className="text-md text-foreground/90 hover:text-foreground transition-all"
-          >
-            Projects
-          </Link>
-        </Button>
-        <Button variant="ghost" asChild className="font-medium">
-          <Link
-            href="#experiences"
-            className="text-md text-foreground/90 hover:text-foreground transition-all"
-          >
-            Experiences
-          </Link>
-        </Button>
-      </div>
-
-      <div className="flex h-full items-center gap-1">
-        <div className="hidden md:flex">
-          <Button
-            variant="ghost"
-            asChild
-            className="text-sm font-medium text-foreground/90 hover:text-foreground"
-          >
+        <div className="hidden md:flex items-center justify-center gap-2">
+          <Button variant="ghost" asChild className="font-medium">
             <Link
-              href="mailto:teukusultanul@gmail.com"
-              aria-label="Email Teuku Sulthan"
+              href="#stacks"
+              className="text-md text-foreground/90 hover:text-foreground transition-all"
             >
-              Contact
+              Tech
+            </Link>
+          </Button>
+          <Button variant="ghost" asChild className="font-medium">
+            <Link
+              href="#projects"
+              className="text-md text-foreground/90 hover:text-foreground transition-all"
+            >
+              Projects
+            </Link>
+          </Button>
+          <Button variant="ghost" asChild className="font-medium">
+            <Link
+              href="#experiences"
+              className="text-md text-foreground/90 hover:text-foreground transition-all"
+            >
+              Experiences
             </Link>
           </Button>
         </div>
 
-        <Button
-          className="cursor-pointer"
-          variant="ghost"
-          size="icon"
-          aria-label={ariaLabel}
-          title={titleLabel}
-          onClick={onToggleTheme}
-        >
-          <span suppressHydrationWarning>
-            {mounted ? (
-              isDark ? (
-                <Moon className="h-5 w-5" />
-              ) : (
-                <Sun className="h-5 w-5" />
-              )
-            ) : (
-              <Sun className="h-5 w-5" />
-            )}
-          </span>
-        </Button>
+        <div className="flex h-full items-center gap-1">
+          <div className="hidden md:flex">
+            <Button
+              variant="ghost"
+              asChild
+              className="text-sm font-medium text-foreground/90 hover:text-foreground"
+            >
+              <Link
+                href="mailto:teukusultanul@gmail.com"
+                aria-label="Email Teuku Sulthan"
+              >
+                Contact
+              </Link>
+            </Button>
+          </div>
 
-        <div className="md:hidden flex items-center">
           <Button
-            variant="ghost"
-            size="icon"
-            aria-label="Toggle menu"
-            aria-expanded={open}
-            onClick={() => setOpen((v) => !v)}
-          >
-            {open ? <X className="h-8 w-8" /> : <Menu className="h-8 w-8" />}
-          </Button>
-        </div>
-      </div>
-
-      <div
-        onClick={() => setOpen(false)}
-        className={[
-          "md:hidden fixed inset-0 z-40 transition",
-          open
-            ? "backdrop-blur-sm bg-foreground/10 opacity-100"
-            : "pointer-events-none bg-transparent backdrop-blur-0 opacity-0",
-        ].join(" ")}
-      />
-
-      <aside
-        className={[
-          "md:hidden fixed top-0 right-0 z-50 h-screen w-48 sm:w-56",
-          "bg-background shadow-xl border-l border-border",
-          "transition-transform duration-300",
-          open ? "translate-x-0" : "translate-x-full",
-        ].join(" ")}
-        role="dialog"
-        aria-modal="true"
-        aria-label="Mobile navigation"
-      >
-        <div className="flex h-20 items-center justify-between px-4">
-          <Button
+            className="cursor-pointer"
             variant="ghost"
             size="icon"
             aria-label={ariaLabel}
@@ -207,71 +157,132 @@ export default function NavBar() {
             </span>
           </Button>
 
-          <Button
-            variant="ghost"
-            size="icon"
-            aria-label="Close menu"
-            onClick={() => setOpen(false)}
-          >
-            <X className="h-5 w-5" />
-          </Button>
+          <div className="md:hidden flex items-center">
+            <Button
+              variant="ghost"
+              size="icon"
+              aria-label="Toggle menu"
+              aria-expanded={open}
+              onClick={() => setOpen((v) => !v)}
+            >
+              {open ? <X className="h-8 w-8" /> : <Menu className="h-8 w-8" />}
+            </Button>
+          </div>
         </div>
+      </nav>
 
-        <div className="flex flex-col gap-1 px-3 py-2">
-          <Button
-            variant="ghost"
-            className="justify-start"
-            onClick={closeAfter}
-            asChild
-          >
-            <Link
-              className="w-full text-md text-foreground/90 hover:text-foreground"
-              href="#experiences"
+      {portalReady &&
+        createPortal(
+          <>
+            <div
+              onClick={() => setOpen(false)}
+              className={[
+                "fixed inset-0 z-90 transition",
+                open
+                  ? "backdrop-blur-sm bg-foreground/10 opacity-100"
+                  : "pointer-events-none bg-transparent backdrop-blur-0 opacity-0",
+              ].join(" ")}
+            />
+            <aside
+              className={[
+                "fixed top-0 right-0 z-100 h-screen w-48 sm:w-56",
+                "bg-background shadow-xl border-l border-border",
+                "transition-transform duration-300",
+                open ? "translate-x-0" : "translate-x-full",
+              ].join(" ")}
+              role="dialog"
+              aria-modal="true"
+              aria-label="Mobile navigation"
             >
-              Experiences
-            </Link>
-          </Button>
-          <Button
-            variant="ghost"
-            className="justify-start"
-            onClick={closeAfter}
-            asChild
-          >
-            <Link
-              className="w-full text-md text-foreground/90 hover:text-foreground"
-              href="#skills"
-            >
-              Skills
-            </Link>
-          </Button>
-          <Button
-            variant="ghost"
-            className="justify-start"
-            onClick={closeAfter}
-            asChild
-          >
-            <Link
-              className="w-full text-md text-foreground/90 hover:text-foreground"
-              href="#projects"
-            >
-              Projects
-            </Link>
-          </Button>
-          <Button
-            variant="ghost"
-            className="justify-start text-sm"
-            onClick={closeAfter}
-            asChild
-          >
-            <Link
-              className="text-foreground/90 hover:text-foreground"
-              href="#contact"
-            >
-              Contact
-            </Link>
-          </Button>
-        </div>
-      </aside>
-    </nav>
+              <div className="flex h-20 items-center justify-between px-4">
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  aria-label={ariaLabel}
+                  title={titleLabel}
+                  onClick={onToggleTheme}
+                >
+                  <span suppressHydrationWarning>
+                    {mounted ? (
+                      isDark ? (
+                        <Moon className="h-5 w-5" />
+                      ) : (
+                        <Sun className="h-5 w-5" />
+                      )
+                    ) : (
+                      <Sun className="h-5 w-5" />
+                    )}
+                  </span>
+                </Button>
+
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  aria-label="Close menu"
+                  onClick={() => setOpen(false)}
+                >
+                  <X className="h-5 w-5" />
+                </Button>
+              </div>
+
+              <div className="flex flex-col gap-1 px-3 py-2">
+                <Button
+                  variant="ghost"
+                  className="justify-start"
+                  onClick={closeAfter}
+                  asChild
+                >
+                  <Link
+                    className="w-full text-md text-foreground/90 hover:text-foreground"
+                    href="#experiences"
+                  >
+                    Experiences
+                  </Link>
+                </Button>
+                <Button
+                  variant="ghost"
+                  className="justify-start"
+                  onClick={closeAfter}
+                  asChild
+                >
+                  <Link
+                    className="w-full text-md text-foreground/90 hover:text-foreground"
+                    href="#skills"
+                  >
+                    Skills
+                  </Link>
+                </Button>
+                <Button
+                  variant="ghost"
+                  className="justify-start"
+                  onClick={closeAfter}
+                  asChild
+                >
+                  <Link
+                    className="w-full text-md text-foreground/90 hover:text-foreground"
+                    href="#projects"
+                  >
+                    Projects
+                  </Link>
+                </Button>
+                <Button
+                  variant="ghost"
+                  className="justify-start text-sm"
+                  onClick={closeAfter}
+                  asChild
+                >
+                  <Link
+                    className="text-foreground/90 hover:text-foreground"
+                    href="#contact"
+                  >
+                    Contact
+                  </Link>
+                </Button>
+              </div>
+            </aside>
+          </>,
+          document.body
+        )}
+    </>
   );
 }

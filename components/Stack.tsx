@@ -88,10 +88,10 @@ export default function Stack() {
   return (
     <section id="stacks" className="h-screen px-15 md:px-25 flex items-center">
       <div className="w-full mx-auto min-w-0">
-        <h1 className="text-4xl font-bold mb-2 tracking-wide text-center">
+        <h1 className="text-3xl font-bold mb-2 tracking-wide text-center">
           TECH STACKS.
         </h1>
-        <h2 className="text-center text-sidebar-ring text-xl mb-15 tracking-wider">
+        <h2 className="text-center text-sidebar-ring text-md mb-15 tracking-wider">
           These are all the tech stacks that I have used in my software
           engineering journey.
         </h2>
