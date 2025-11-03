@@ -6,6 +6,7 @@ import FadeContent from "@/components/FadeContent";
 export default function Home() {
   return (
     <main className="min-h-screen bg-background text-foreground antialiased">
+      <Navbar />
       <FadeContent
         blur={true}
         duration={2000}
@@ -13,7 +14,6 @@ export default function Home() {
         initialOpacity={0}
       >
         <Hero />
-        <Navbar />
         <Stack />
       </FadeContent>
     </main>

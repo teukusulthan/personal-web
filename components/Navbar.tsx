@@ -9,6 +9,27 @@ import { Menu, X, Sun, Moon } from "lucide-react";
 export default function NavBar() {
   const [open, setOpen] = React.useState(false);
 
+  const blur = true;
+  const duration = 2000;
+  const easing = "ease-out";
+  const delay = 0;
+  const initialOpacity = 0;
+
+  const [inView, setInView] = React.useState(false);
+  React.useEffect(() => {
+    const t: ReturnType<typeof setTimeout> = setTimeout(
+      () => setInView(true),
+      delay
+    );
+    return () => clearTimeout(t);
+  }, [delay]);
+
+  const fadeStyle: React.CSSProperties = {
+    opacity: inView ? 1 : initialOpacity,
+    transition: `opacity ${duration}ms ${easing}, filter ${duration}ms ${easing}`,
+    filter: blur ? (inView ? "blur(0px)" : "blur(10px)") : "none",
+  };
+
   const { theme, setTheme, systemTheme } = useTheme();
   const [mounted, setMounted] = React.useState(false);
   React.useEffect(() => setMounted(true), []);
@@ -19,7 +40,6 @@ export default function NavBar() {
     (next: "light" | "dark") => {
       const root = document.documentElement;
       root.classList.add("theme-transition");
-
       void root.offsetWidth;
       requestAnimationFrame(() => {
         setTheme(next);
@@ -58,7 +78,10 @@ export default function NavBar() {
     : "Toggle theme";
 
   return (
-    <nav className="fixed top-0 z-80 left-0 right-0 flex h-16 justify-between px-6 md:px-8 lg:px-16 bg-background text-foreground">
+    <nav
+      style={fadeStyle}
+      className="fixed top-0 z-80 left-0 right-0 flex h-16 justify-between px-6 md:px-8 lg:px-16 bg-background text-foreground"
+    >
       <div className="flex h-full items-center">
         <p className="cursor-pointer tracking-widest text-sm hover:opacity-90">
           TEUKU SULTHAN.
@@ -71,7 +94,7 @@ export default function NavBar() {
             href="#stacks"
             className="text-md text-foreground/90 hover:text-foreground transition-all"
           >
-            Stacks
+            Tech
           </Link>
         </Button>
         <Button variant="ghost" asChild className="font-medium">

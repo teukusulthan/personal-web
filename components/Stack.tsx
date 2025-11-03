@@ -86,11 +86,15 @@ export default function Stack() {
   ];
 
   return (
-    <section id="stacks" className="h-screen px-20 flex items-center">
+    <section id="stacks" className="h-screen px-15 md:px-25 flex items-center">
       <div className="w-full mx-auto min-w-0">
-        <h1 className="text-4xl font-bold mb-20 tracking-wide text-center">
+        <h1 className="text-4xl font-bold mb-2 tracking-wide text-center">
           TECH STACKS.
         </h1>
+        <h2 className="text-center text-sidebar-ring text-xl mb-15 tracking-wider">
+          These are all the tech stacks that I have used in my software
+          engineering journey.
+        </h2>
 
         <div className="relative h-24 sm:h-28 md:h-32 w-full mb-12 overflow-hidden">
           <LogoLoop
