@@ -54,10 +54,10 @@ function LogoBox({
   );
 }
 
-export default function ExperiencesSection() {
+export default function Experiences() {
   return (
     <section id="experiences" className="min-h-screen bg-background">
-      <div className="mx-auto max-w-6xl px-5 md:px-8 lg:px-10 py-12 md:py-16">
+      <div className="mx-auto max-w-6xl px-8 md:px-16 py-12 md:py-16">
         <div className="mb-6 text-center md:mb-8">
           <h1 className="text-3xl mt-10 font-bold tracking-tight">
             EXPERIENCES.
