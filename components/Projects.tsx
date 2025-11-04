@@ -73,7 +73,7 @@ const projects: Project[] = [
     href: "https://kasmini.teukusulthan.xyz",
     img: kasmini,
     desc: "Telegram-based sales tracker for small businesses, featuring product CRUD, sales logging, and daily recap. Created with N8N, Neon Postgres, and Next.js",
-    techs: ["next", "tailwind", "ts", "node", "postgres", "shadcn"],
+    techs: ["next", "tailwind", "ts", "postgres", "shadcn"],
     github: "https://github.com/yourname/kasmini",
     live: "https://kasmini.teukusulthan.xyz",
   },
@@ -81,7 +81,7 @@ const projects: Project[] = [
     title: "Instacard",
     href: "#",
     img: instacard,
-    desc: "Link in bio with public link customization, social link manager, and public profile page.  Created with Next.js and Express.js",
+    desc: "Instacard is a link in bio with public link customization, social link manager, and public profile page.  Created with Next.js and Express.js",
     techs: [
       "next",
       "tailwind",
@@ -89,7 +89,6 @@ const projects: Project[] = [
       "shadcn",
       "express",
       "prisma",
-      "node",
       "postgres",
     ],
     github: "https://github.com/yourname/instacard",
@@ -106,7 +105,6 @@ const projects: Project[] = [
       "ts",
       "express",
       "prisma",
-      "node",
       "postgres",
       "redis",
     ],
@@ -128,14 +126,14 @@ export default function Projects() {
   return (
     <section
       id="projects"
-      className="min-h-screen flex flex-col items-center justify-start px-6 md:px-10 pt-0 pb-12 md:pb-16"
+      className="min-h-screen flex flex-col items-center justify-start px-6 md:px-10 pt-25 pb-12 md:pb-16"
     >
       <div className="max-w-7xl w-full">
         <header className="mb-6 md:mb-8">
-          <h1 className="text-3xl md:text-4xl font-bold tracking-wide text-center leading-[1.1]">
+          <h1 className="text-3xl md:text-4xl font-bold tracking-tight text-center leading-[1.1]">
             RECENT PROJECTS.
           </h1>
-          <p className="mt-2 text-md md:text-base text-muted-foreground text-center leading-tight">
+          <p className="mt-2 text-md text-sidebar-ring tracking-wider text-center leading-tight">
             The following are projects that I have worked on during my software
             engineering journey.
           </p>
@@ -173,11 +171,11 @@ export default function Projects() {
                     p.title
                   )}
                 </h3>
-                <p className="mt-3 text-sm md:text-[15px] text-muted-foreground leading-relaxed line-clamp-3">
+                <p className="mt-3 text-sm md:text-[15px] text-sidebar-ring/60 leading-relaxed line-clamp-3">
                   {p.desc}
                 </p>
 
-                <div className="mt-4 flex items-center gap-4 flex-wrap text-muted-foreground/90">
+                <div className="mt-4 flex items-center gap-4 flex-wrap text-sidebar-ring/60">
                   {p.techs.map((t, idx) => (
                     <span
                       key={idx}
@@ -190,7 +188,6 @@ export default function Projects() {
                 </div>
               </CardContent>
 
-              {/* TOMBOL: tetap di bawah (CardFooter) */}
               <CardFooter className="px-6 pb-6 pt-2">
                 <div className="flex flex-col sm:flex-row gap-2 w-full">
                   {p.github ? (

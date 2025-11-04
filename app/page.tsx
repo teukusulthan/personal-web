@@ -3,6 +3,7 @@ import Hero from "@/components/Hero";
 import Stack from "@/components/Stack";
 import FadeContent from "@/components/FadeContent";
 import Projects from "@/components/Projects";
+import Experiences from "@/components/Experiences";
 
 export default function Home() {
   return (
@@ -17,6 +18,7 @@ export default function Home() {
         <Hero />
         <Stack />
         <Projects />
+        <Experiences />
       </FadeContent>
     </main>
   );

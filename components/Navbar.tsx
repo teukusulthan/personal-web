@@ -1,7 +1,6 @@
 "use client";
 
 import * as React from "react";
-import Link from "next/link";
 import { createPortal } from "react-dom";
 import { useTheme } from "next-themes";
 import { Button } from "./ui/button";
@@ -65,7 +64,17 @@ export default function NavBar() {
     };
   }, [open]);
 
-  const closeAfter = () => setOpen(false);
+  const smoothGo =
+    (id: string, after?: () => void) => (e: React.MouseEvent) => {
+      e.preventDefault();
+      after?.();
+      requestAnimationFrame(() => {
+        document
+          .getElementById(id)
+          ?.scrollIntoView({ behavior: "smooth", block: "start" });
+        history.pushState(null, "", `#${id}`);
+      });
+    };
 
   const ariaLabel = mounted
     ? isDark
@@ -90,6 +99,7 @@ export default function NavBar() {
         <div className="flex h-full items-center">
           <a
             href="#hero"
+            onClick={smoothGo("hero")}
             className="cursor-pointer tracking-widest text-sm hover:opacity-90"
           >
             TEUKU SULTHAN.
@@ -98,28 +108,31 @@ export default function NavBar() {
 
         <div className="hidden md:flex items-center justify-center gap-2">
           <Button variant="ghost" asChild className="font-medium">
-            <Link
+            <a
               href="#stacks"
+              onClick={smoothGo("stacks")}
               className="text-md text-foreground/90 hover:text-foreground transition-all"
             >
               Tech
-            </Link>
+            </a>
           </Button>
           <Button variant="ghost" asChild className="font-medium">
-            <Link
+            <a
               href="#projects"
+              onClick={smoothGo("projects")}
               className="text-md text-foreground/90 hover:text-foreground transition-all"
             >
               Projects
-            </Link>
+            </a>
           </Button>
           <Button variant="ghost" asChild className="font-medium">
-            <Link
+            <a
               href="#experiences"
+              onClick={smoothGo("experiences")}
               className="text-md text-foreground/90 hover:text-foreground transition-all"
             >
               Experiences
-            </Link>
+            </a>
           </Button>
         </div>
 
@@ -130,12 +143,12 @@ export default function NavBar() {
               asChild
               className="text-sm font-medium text-foreground/90 hover:text-foreground"
             >
-              <Link
+              <a
                 href="mailto:teukusultanul@gmail.com"
                 aria-label="Email Teuku Sulthan"
               >
                 Contact
-              </Link>
+              </a>
             </Button>
           </div>
 
@@ -229,57 +242,45 @@ export default function NavBar() {
               </div>
 
               <div className="flex flex-col gap-1 px-3 py-2">
-                <Button
-                  variant="ghost"
-                  className="justify-start"
-                  onClick={closeAfter}
-                  asChild
-                >
-                  <Link
+                <Button variant="ghost" className="justify-start" asChild>
+                  <a
                     className="w-full text-md text-foreground/90 hover:text-foreground"
                     href="#stacks"
+                    onClick={smoothGo("stacks", () => setOpen(false))}
                   >
                     Tech
-                  </Link>
+                  </a>
                 </Button>
-                <Button
-                  variant="ghost"
-                  className="justify-start"
-                  onClick={closeAfter}
-                  asChild
-                >
-                  <Link
+                <Button variant="ghost" className="justify-start" asChild>
+                  <a
                     className="w-full text-md text-foreground/90 hover:text-foreground"
                     href="#projects"
+                    onClick={smoothGo("projects", () => setOpen(false))}
                   >
                     Projects
-                  </Link>
+                  </a>
                 </Button>
-                <Button
-                  variant="ghost"
-                  className="justify-start"
-                  onClick={closeAfter}
-                  asChild
-                >
-                  <Link
+                <Button variant="ghost" className="justify-start" asChild>
+                  <a
                     className="w-full text-md text-foreground/90 hover:text-foreground"
                     href="#experiences"
+                    onClick={smoothGo("experiences", () => setOpen(false))}
                   >
                     Experiences
-                  </Link>
+                  </a>
                 </Button>
                 <Button
                   variant="ghost"
                   className="justify-start text-sm"
-                  onClick={closeAfter}
                   asChild
                 >
-                  <Link
+                  <a
                     className="text-foreground/90 hover:text-foreground"
                     href="#contact"
+                    onClick={smoothGo("contact", () => setOpen(false))}
                   >
                     Contact
-                  </Link>
+                  </a>
                 </Button>
               </div>
             </aside>
