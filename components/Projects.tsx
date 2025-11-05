@@ -74,7 +74,7 @@ const projects: Project[] = [
     img: kasmini,
     desc: "Telegram-based sales tracker for small businesses, featuring product CRUD, sales logging, and daily recap. Created with N8N, Neon Postgres, and Next.js",
     techs: ["next", "tailwind", "ts", "postgres", "shadcn"],
-    github: "https://github.com/yourname/kasmini",
+    github: "https://github.com/teukusulthan/kasmini-app",
     live: "https://kasmini.teukusulthan.xyz",
   },
   {
@@ -91,8 +91,8 @@ const projects: Project[] = [
       "prisma",
       "postgres",
     ],
-    github: "https://github.com/yourname/instacard",
-    live: "https://instacard.example.com",
+    github: "https://github.com/teukusulthan/instacard-fe",
+    live: "",
   },
   {
     title: "Circle",
@@ -108,8 +108,8 @@ const projects: Project[] = [
       "postgres",
       "redis",
     ],
-    github: "https://github.com/yourname/instacard",
-    live: "https://instacard.example.com",
+    github: "https://github.com/teukusulthan/circle-fe",
+    live: "",
   },
   {
     title: "Creaflo",
@@ -117,8 +117,8 @@ const projects: Project[] = [
     img: creaflo,
     desc: "Creaflo is an AI-powered content platform that generates on-brand ideas, hooks, captions, and hashtags—faster, more consistent, and ready to publish.",
     techs: ["next", "tailwind", "ts", "express", "prisma", "node", "postgres"],
-    github: "https://github.com/yourname/instacard",
-    live: "https://instacard.example.com",
+    github: "https://github.com/teukusulthan/creaflo-fe",
+    live: "",
   },
 ];
 
@@ -126,7 +126,7 @@ export default function Projects() {
   return (
     <section
       id="projects"
-      className="min-h-screen flex flex-col items-center justify-start px-6 md:px-10 pt-25 pb-12 md:pb-16"
+      className="min-h-screen flex flex-col items-center justify-start px-6 md:px-10 pt-30 pb-12 md:pb-16"
     >
       <div className="max-w-7xl w-full">
         <header className="mb-6 md:mb-8">
@@ -208,7 +208,11 @@ export default function Projects() {
                     </Button>
                   ) : null}
                   {p.live ? (
-                    <Button asChild size="sm" className="sm:flex-1">
+                    <Button
+                      asChild
+                      size="sm"
+                      className="sm:flex-1 bg-primary/90 hover:bg-primary transition-all duration-300"
+                    >
                       <Link
                         href={p.live}
                         target="_blank"

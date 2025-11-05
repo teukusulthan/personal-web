@@ -184,6 +184,11 @@ export default function NavBar() {
         </div>
       </nav>
 
+      <div
+        aria-hidden
+        className="pointer-events-none fixed inset-x-0 top-16 h-28 bg-background z-40 mask-[linear-gradient(to_bottom,black,transparent_85%)]"
+      />
+
       {portalReady &&
         createPortal(
           <>

@@ -17,7 +17,7 @@ type Experience = {
 
 const EXPERIENCES: Experience[] = [
   {
-    title: "Full Stack Web Development Student",
+    title: "Full Stack Web Developer Intern",
     company: "DumbWays Indonesia",
     companyHref: "https://dumbways.id",
     logo: dumbways,
@@ -56,10 +56,10 @@ function LogoBox({
 
 export default function Experiences() {
   return (
-    <section id="experiences" className="min-h-screen bg-background">
-      <div className="mx-auto max-w-6xl px-8 md:px-16 py-12 md:py-16">
+    <section id="experiences" className="min-h-screen mb-12 bg-background">
+      <div className="mx-auto max-w-6xl px-8 md:px-16 py-16 md:py-16">
         <div className="mb-6 text-center md:mb-8">
-          <h1 className="text-3xl mt-10 font-bold tracking-tight">
+          <h1 className="text-3xl mt-15 font-bold tracking-tight">
             EXPERIENCES.
           </h1>
           <p className="mt-2 tracking-wider text-md text-sidebar-ring">
