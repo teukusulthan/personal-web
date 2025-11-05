@@ -4,6 +4,7 @@ import Stack from "@/components/Stack";
 import FadeContent from "@/components/FadeContent";
 import Projects from "@/components/Projects";
 import Experiences from "@/components/Experiences";
+import Contact from "../components/Contact";
 
 export default function Home() {
   return (
@@ -19,6 +20,7 @@ export default function Home() {
         <Stack />
         <Projects />
         <Experiences />
+        <Contact />
       </FadeContent>
     </main>
   );

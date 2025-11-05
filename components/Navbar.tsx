@@ -143,10 +143,7 @@ export default function NavBar() {
               asChild
               className="text-sm font-medium text-foreground/90 hover:text-foreground"
             >
-              <a
-                href="mailto:teukusultanul@gmail.com"
-                aria-label="Email Teuku Sulthan"
-              >
+              <a href="#contact" aria-label="Email Teuku Sulthan">
                 Contact
               </a>
             </Button>
