@@ -5,6 +5,7 @@ import FadeContent from "@/components/FadeContent";
 import Projects from "@/components/Projects";
 import Experiences from "@/components/Experiences";
 import Contact from "../components/Contact";
+import Footer from "../components/Footer";
 
 export default function Home() {
   return (
@@ -21,6 +22,7 @@ export default function Home() {
         <Projects />
         <Experiences />
         <Contact />
+        <Footer />
       </FadeContent>
     </main>
   );

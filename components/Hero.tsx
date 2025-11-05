@@ -45,10 +45,7 @@ export default function Hero() {
               asChild
               className="mt-6 w-35 sm:w-40 mr-4 gap-2 rounded-lg font-medium"
             >
-              <Link
-                href="mailto:teukusultanul@gmail.com"
-                aria-label="Email Teuku Sulthan"
-              >
+              <Link href="#contact" aria-label="Email Teuku Sulthan">
                 <Mail />
                 Contact Me
               </Link>

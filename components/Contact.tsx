@@ -4,7 +4,7 @@ import { RiTelegram2Line } from "react-icons/ri";
 
 export default function Cta() {
   return (
-    <section id="contact" className="h-[70vh]">
+    <section id="contact" className="h-[50vh]">
       <div className="mx-auto max-w-3xl px-10 md:px-20 pt-10">
         <h1 className="text-center font-bold text-2xl sm:text-3xl tracking-tight">
           LET'S BUILD SOMETHING TOGETHER.
