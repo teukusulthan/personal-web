@@ -35,10 +35,9 @@ export default function Hero() {
               FULL STACK SOFTWARE ENGINEER
             </h2>
             <p className="mt-6 max-w-2xl text-sm leading-7 text-foreground/80 sm:text-md mx-auto md:mx-0">
-              I design, build, and operate digital products end-to-end
-              clarifying the problem, shaping the solution, and ensuring it
-              performs in the real world. I focus on clear user journeys,
-              reliable execution.
+              I design, build, and operate digital products end to end.
+              sharpening the problem, shaping the solution, and ensuring clear
+              user journeys and dependable performance in the real world.
             </p>
 
             <Button
