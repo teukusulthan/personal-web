@@ -21,7 +21,7 @@ const EXPERIENCES: Experience[] = [
     company: "DumbWays Indonesia",
     companyHref: "https://dumbways.id",
     logo: dumbways,
-    period: "March 2025 – Nov 2025",
+    period: "Jul – Nov 2025",
     points: [
       "Build multiple full-stack project using modern tech stacks.",
       "learn to solve difficult real problems in application developmentl",
