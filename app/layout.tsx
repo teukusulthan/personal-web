@@ -1,6 +1,11 @@
 import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
 
+export const metadata = {
+  title: "Teuku Sulthan - Portfolio",
+  description: "Official portfolio of Teuku Sulthan, a web developer and tech enthusiast focused on modern web development."
+} 
+
 export default function RootLayout({
   children,
 }: {
