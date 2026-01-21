@@ -23,7 +23,7 @@ export default function Footer() {
 
           <div className="flex items-center gap-4">
             <Link
-              href="mailto:teukusultanul@gmail.com"
+              href="mailto:teukusulthanul@gmail.com"
               className="text-sidebar-ring hover:text-primary transition-colors"
               aria-label="Email"
             >

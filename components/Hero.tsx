@@ -3,6 +3,7 @@ import sulthan from "../public/sulthan.jpg";
 import { Button } from "./ui/button";
 import { Github, Mail } from "lucide-react";
 import Link from "next/link";
+import ShinyText from "./ui/ShinyText";
 
 export default function Hero() {
   return (
@@ -31,9 +32,22 @@ export default function Hero() {
               </span>
               TEUKU SULTHAN.
             </h1>
-            <h2 className="mt-2 text-md text-foreground/80 sm:text-2xl">
+            <ShinyText
+              className="lg:text-2xl font-md"
+              text=" FULL-STACK SOFTWARE ENGINEER"
+              speed={2.5}
+              delay={0}
+              color="var(--chart-2)"
+              shineColor="var(--chart-3)"
+              spread={200}
+              direction="left"
+              yoyo={false}
+              pauseOnHover={false}
+              disabled={false}
+            />
+            {/* <h2 className="mt-2 text-md text-foreground/80 sm:text-2xl">
               FULL STACK SOFTWARE ENGINEER
-            </h2>
+            </h2> */}
             <p className="mt-6 max-w-2xl text-sm leading-7 text-foreground/80 sm:text-md mx-auto md:mx-0">
               I design, build, and operate digital products end to end.
               sharpening the problem, shaping the solution, and ensuring clear

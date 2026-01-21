@@ -6,6 +6,8 @@ import kasmini from "@/public/kasmini.jpg";
 import circle from "@/public/circle.jpg";
 import instacard from "@/public/instacard.jpg";
 import creaflo from "@/public/creaflo.jpg";
+import taksim from "@/public/taksim.png";
+import nyatet from "@/public/nyatet.jpg";
 
 import {
   Card,
@@ -26,6 +28,7 @@ import {
   SiPostgresql,
   SiSupabase,
   SiRedis,
+  SiNestjs,
 } from "react-icons/si";
 import { Github, ExternalLink } from "lucide-react";
 import { JSX } from "react";
@@ -41,7 +44,8 @@ type Tech =
   | "prisma"
   | "postgres"
   | "supabase"
-  | "redis";
+  | "redis"
+  | "nest";
 
 const techIcon: Record<Tech, JSX.Element> = {
   react: <SiReact className="size-5" title="React" />,
@@ -55,6 +59,7 @@ const techIcon: Record<Tech, JSX.Element> = {
   postgres: <SiPostgresql className="size-5" title="PostgreSQL" />,
   supabase: <SiSupabase className="size-5" title="Supabase" />,
   redis: <SiRedis className="size-5" title="Redis" />,
+  nest: <SiNestjs className="size-5" title="NestJS" />,
 };
 
 type Project = {
@@ -69,19 +74,10 @@ type Project = {
 
 const projects: Project[] = [
   {
-    title: "Kasmini",
-    href: "https://kasmini.teukusulthan.xyz",
-    img: kasmini,
-    desc: "Telegram-based sales tracker for small businesses, featuring product CRUD, sales logging, and daily recap. Created with N8N, Neon Postgres, and Next.js",
-    techs: ["next", "tailwind", "ts", "postgres", "shadcn"],
-    github: "https://github.com/teukusulthan/kasmini-app",
-    live: "https://kasmini.teukusulthan.xyz",
-  },
-  {
     title: "Instacard",
     href: "#",
     img: instacard,
-    desc: "Instacard is a link in bio with public link customization, social link manager, and public profile page.  Created with Next.js and Express.js",
+    desc: "A link in bio with public link customization, social link manager, and public profile page.  Created with Next.js and Express.js",
     techs: [
       "next",
       "tailwind",
@@ -92,13 +88,31 @@ const projects: Project[] = [
       "postgres",
     ],
     github: "https://github.com/teukusulthan/instacard-fe",
+    live: "https://try-instacard.vercel.app",
+  },
+  {
+    title: "Creaflo",
+    href: "#",
+    img: creaflo,
+    desc: "An AI-powered content platform that generates on-brand ideas, hooks, captions, and hashtags—faster, more consistent, and ready to publish.",
+    techs: ["next", "tailwind", "ts", "express", "prisma", "node", "postgres"],
+    github: "https://github.com/teukusulthan/creaflo-fe",
     live: "",
+  },
+  {
+    title: "Taksim Medika",
+    href: "https://kliniktaksimmedika.com",
+    img: taksim,
+    desc: "A modern medical portal for Klinik Utama Taksim Medika, featuring real-time doctor scheduling and online booking to enhance digital patient engagement and accessibility.",
+    techs: ["next", "tailwind", "ts", "express", "prisma", "node", "postgres"],
+    github: "",
+    live: "https://edu-client-production.up.railway.app",
   },
   {
     title: "Circle",
     href: "#",
     img: circle,
-    desc: "Circle is a full-stack social platform built with React and Express, featuring real-time communication powered by WebSockets and high-performance caching with Redis.",
+    desc: "A full-stack social platform built with React and Express, featuring real-time communication powered by WebSockets and high-performance caching with Redis.",
     techs: [
       "react",
       "tailwind",
@@ -112,13 +126,22 @@ const projects: Project[] = [
     live: "",
   },
   {
-    title: "Creaflo",
-    href: "#",
-    img: creaflo,
-    desc: "Creaflo is an AI-powered content platform that generates on-brand ideas, hooks, captions, and hashtags—faster, more consistent, and ready to publish.",
-    techs: ["next", "tailwind", "ts", "express", "prisma", "node", "postgres"],
-    github: "https://github.com/teukusulthan/creaflo-fe",
-    live: "",
+    title: "Nyatet",
+    href: "https://edu-client-production.up.railway.app/",
+    img: nyatet,
+    desc: "A student-centric platform enabling the sale of academic materials, featuring an built-in AI summarizer that automatically condenses notes into sellable summaries for faster, more efficient learning.",
+    techs: ["next", "tailwind", "ts", "nest", "prisma", "node", "postgres"],
+    github: "",
+    live: "https://edu-client-production.up.railway.app",
+  },
+  {
+    title: "Kasmini",
+    href: "https://kasmini.teukusulthan.xyz",
+    img: kasmini,
+    desc: "A Telegram-based sales tracker for small businesses, featuring product CRUD, sales logging, and daily recap. Created with N8N, Neon Postgres, and Next.js",
+    techs: ["next", "tailwind", "ts", "postgres", "shadcn"],
+    github: "https://github.com/teukusulthan/kasmini-app",
+    live: "https://kasmini.vercel.app",
   },
 ];
 

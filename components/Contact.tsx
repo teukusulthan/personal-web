@@ -17,11 +17,11 @@ export default function Cta() {
 
         <div className="mt-10 flex flex-col items-center justify-center gap-2 md:flex-row">
           <Link
-            href="mailto:teukusultanul@gmail.com"
+            href="mailto:teukusulthanul@gmail.com"
             className="inline-flex items-center gap-2 text-sm md:text-base text-foreground/80 hover:text-primary transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 rounded-md px-2 py-1"
           >
             <Mail className="h-4 w-4" />
-            <span>teukusultanul@gmail.com</span>
+            <span>teukusulthanul@gmail.com</span>
           </Link>
 
           <span className="hidden md:inline-block select-none text-muted-foreground/60">

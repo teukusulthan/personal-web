@@ -11,6 +11,8 @@ import {
   SiPrisma,
   SiPostgresql,
   SiSupabase,
+  SiGo,
+  SiGin,
 } from "react-icons/si";
 
 const ShadcnFallback = (props: React.SVGProps<SVGSVGElement>) => (
@@ -62,6 +64,16 @@ export default function Stack() {
       node: <SiNodedotjs className="text-[#339933]" />,
       title: "Node.js",
       href: "https://nodejs.org",
+    },
+    {
+      node: <SiGo className="text-[#339933]" />,
+      title: "Golang",
+      href: "https://go.dev",
+    },
+    {
+      node: <SiGin className="text-[#339933]" />,
+      title: "Gin",
+      href: "https://gin-gonic.com/en/",
     },
     {
       node: <SiExpress className="text-black dark:text-white" />,
