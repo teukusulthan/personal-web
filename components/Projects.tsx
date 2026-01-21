@@ -106,7 +106,7 @@ const projects: Project[] = [
     desc: "A modern medical portal for Klinik Utama Taksim Medika, featuring real-time doctor scheduling and online booking to enhance digital patient engagement and accessibility.",
     techs: ["next", "tailwind", "ts", "express", "prisma", "node", "postgres"],
     github: "",
-    live: "https://edu-client-production.up.railway.app",
+    live: "https://kliniktaksimmedika.com",
   },
   {
     title: "Circle",
